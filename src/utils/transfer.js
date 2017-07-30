@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const Promise = require('bluebird');
 const rp = require('request-promise');
 let minfee = 100000;
-function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee, privateKey, server, attempt}){
+function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee, privateKey, server, attempts, dontsend}){
   return new Promise((resolve, reject)=>{
     let ts = new Date().getTime();
     let _privateKey = bs58.decode(privateKey);
@@ -37,13 +37,22 @@ function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee,
     //   recipient:recipient
     // })
     //
-    rp(options)
-      .then(function (parsedBody) {
-        resolve()
-      })
-      .catch(function (err) {
-        resolve(err.message)
-      });
+    if(dontsend){
+      return resolve()
+    }else{
+      rp(options)
+        .then(function (parsedBody) {
+          return resolve()
+        })
+        .catch(function (err) {
+          return resolve({
+            message:err.message,
+            recipient:recipient,
+            attempts:attempts
+          })
+        });
+    }
+
 
   })
 

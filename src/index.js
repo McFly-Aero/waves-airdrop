@@ -52,6 +52,7 @@ function processList(list){
       assetId: options.assetId,
       senderPublicKey: options.publicKey,
       recipient:line.address,
+      attempts:line.attempts || 0,
       fee: options.fee,
       privateKey:options.privateKey
     }

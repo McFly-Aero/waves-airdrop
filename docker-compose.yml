@@ -1,8 +1,0 @@
-jupyter:
-  build: .
-  ports:
-    - "6863:6863"
-    - "6869:6869"
-  volumes:
-    - ./data:/home/user/local-waves-data
-    - ./conf:/home/user/local-waves-conf

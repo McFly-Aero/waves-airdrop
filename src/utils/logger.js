@@ -6,7 +6,11 @@ const csvStringify = require('csv-stringify');
 import path from 'path'
 import process from 'process'
 import fs  from 'fs'
+const logroot = path.join(__dirname,'..','..','/logs/');
 const logpath = path.join(__dirname,'..','..','/logs/',''+Date.now());
+if (!fs.existsSync(logroot)){
+  fs.mkdirSync(logroot);
+}
 fs.mkdirSync(logpath);
 const logCSVStream = fs.createWriteStream(logpath+'/failed.csv', {'flags': 'a'});
 const logFileStream = fs.createWriteStream(logpath+'/log.txt', {'flags': 'a'});
@@ -18,7 +22,7 @@ let failedRecords = []
 function init (source = 'unknown'){
   let saveFailedTransaction = (record) => {
     error(colors.white.bold(record.recipient) +' has an error:\t'+ record.message);
-    let obj = [Date.now(),record.recipient, record.name, (record.attempt || 0) + 1];
+    let obj = [Date.now(),record.recipient, (record.attempts || 0) + 1];
     failedRecords.push(obj);
     csvStringify([obj], {
       delimiter:';'

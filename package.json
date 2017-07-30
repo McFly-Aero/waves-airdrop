@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "cross-env DEBUG=*,-babel babel-node ./src/index.js",
     "start": "babel src --out-dir dist && node ./dist/index.js -l data/list1.csv data/list2.csv -c $ASSET_ID -b $PUBLIC_PAYER_KEY -r $PRIVATE_PAYER_KEY",
-    "startfail": "babel src --out-dir dist && node ./dist/index.js -c qwe -b asdd ",
     "build": "babel src --out-dir dist",
-    "b":"kotatsu build server --es2015 ./src/index.js -o ./dist/",
-    "docs": ""
   },
   "author": "",
   "license": "ISC",

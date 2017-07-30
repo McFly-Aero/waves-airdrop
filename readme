@@ -1,0 +1,34 @@
+
+Установка
+
+    1) ставим ноду, если нет
+    https://nodejs.org/en/download/current/
+
+    2) тянем гит в папку wms
+    git pull https://bitbucket.org/gen4/wavemasssender wms
+
+    3) заходим в папку
+    cd wms
+
+    4) ставим зависиомсти
+    npm i
+
+    5) билдим скрипт
+    npm run build
+
+
+Использование
+
+   1) заходим в /dist
+   cd dist
+
+   2) запускаем скрипт
+   node index
+
+   3) получаем хелп, читаем и запускаем скрипт следуя инструкции
+   фейк-пример: node index -l ../data/list1.csv -a 1 -c ZFaFEa6PayEV99aaHQNq4kBESjrS9qW7U5AmwA7diQ4T -b 2H74iAq1CUgf1VPTs2x9XEi5nH2dxBho2HDJ6oqUvjBf -r DisL9ZxFAB922UW2HnjYzYDMZyWBXGoxwGsacJKG53nx
+
+   4) на выходе получаем пачку логов, которые доступны по /logs/TIMESTAMP
+   файл fails.csv содержит все кошельки, на которых произошла ошибка. Его можно загрузить повторно в скрипт, указав в ключе --list
+
+

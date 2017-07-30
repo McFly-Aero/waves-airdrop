@@ -7,16 +7,15 @@ const optionDefinitions = [
     name: 'lists',
     alias: 'l',
     typeLabel: '[underline]{file}',
-    description: 'csv list of addresses. Should has address column. Amount is optional',
+    description: ' * CSV list of addresses. Should has address column. Amount is optional',
     // defaultOption: true,
     multiple: true,
-    defaultValue: [ "list.csv" ],
     type: String
   },
   {
     name: 'amount',
     alias: 'a',
-    description: 'Amount of currency to send',
+    description: 'Amount of currency to send. Default: 1',
     defaultValue: 1,
     type: Number
   },
@@ -41,7 +40,7 @@ const optionDefinitions = [
   {
     name: 'server',
     alias: 's',
-    description: 'Server url',
+    description: 'Server url. Default: http://dev.pywaves.org:6869',
     defaultValue: 'http://dev.pywaves.org:6869',
     // defaultValue: 'http://localhost:6869',
     type: String
@@ -54,18 +53,12 @@ const optionDefinitions = [
     type: Number
   },
   {
-    name: 'wary',
-    alias: 'w',
-    description: 'Should take operator attention if error appears. Default collect errors into seporate file',
+    name: 'dontsend',
+    alias: 'x',
+    description: 'FAKE sending money if flag is set',
+    defaultValue: false,
     type: Boolean
-  },
-  {
-    name: 'log',
-    typeLabel: '[underline]{file}',
-    description: 'File to save all errors',
-    defaultValue: 'errorLog.txt',
-    type: String
-  },
+  }
 ];
 
 
@@ -76,7 +69,7 @@ const options = commandLineArgs(optionDefinitions)
 const sections = [
   {
     header: 'Waves mass-payment tool',
-    content: 'Takes a list of recipients and send a payment to each'
+    content: 'Takes a list of recipients and send a payment to each. lists, assetId, publicKey, privateKey - are required'
   },
   {
     header: 'Options',
@@ -91,7 +84,7 @@ const usage = getUsage(sections)
 
 
 function checkRequired(opts){
-  return !(!opts.assetId || !opts.publicKey || !opts.privateKey);
+  return !(!opts.assetId || !opts.publicKey || !opts.privateKey || !opts.lists || opts.lists.length<=0);
 }
 
 function init(){
