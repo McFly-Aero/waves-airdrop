@@ -20,6 +20,13 @@ const optionDefinitions = [
     type: Number
   },
   {
+    name: 'message',
+    alias: 'm',
+    description: 'Message to be attached to payment. Default: Surprise!',
+    defaultValue: 'Surprise!',
+    type: String
+  },
+  {
     name: 'assetId',
     alias: 'c',
     description: ' * AssetID',
@@ -84,7 +91,11 @@ const usage = getUsage(sections)
 
 
 function checkRequired(opts){
-  return !(!opts.assetId || !opts.publicKey || !opts.privateKey || !opts.lists || opts.lists.length<=0);
+  return !(!opts.assetId ||
+  !opts.publicKey ||
+  !opts.privateKey ||
+  !opts.lists || opts.lists.length<=0 ||
+  (opts.message && opt.message.length>140));
 }
 
 function init(){

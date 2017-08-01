@@ -48,7 +48,7 @@ function processList(list){
     let obj = {
       server: options.server,
       amount: options.amount,
-      attachment: options.attachment,
+      attachment: options.message,
       assetId: options.assetId,
       senderPublicKey: options.publicKey,
       recipient:line.address,
