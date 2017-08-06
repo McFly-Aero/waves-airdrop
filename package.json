@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env DEBUG=*,-babel babel-node ./src/index.js",
     "start": "babel src --out-dir dist && node ./dist/index.js -l data/list1.csv data/list2.csv -c $ASSET_ID -b $PUBLIC_PAYER_KEY -r $PRIVATE_PAYER_KEY",
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir dist"
   },
   "author": "",
   "license": "ISC",
