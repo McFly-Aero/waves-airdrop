@@ -1,7 +1,7 @@
 const bs58 = require('bs58');
 const axlsign = require('axlsign');
 
-function buildCreateAssetTransferSignatureData(transfer, privateKey, randomBytes) {
+function buildCreateAssetTransferSignatureData(transfer, privateKey, randomBytes, lengthBug) {
 
   let array = [
     Buffer([4]),
@@ -14,7 +14,7 @@ function buildCreateAssetTransferSignatureData(transfer, privateKey, randomBytes
     Buffer(longToByteArray(transfer.fee)),
     base58StringToByteArray(transfer.recipient),
     // Buffer([0,0]),
-    Buffer([0,transfer.attachment.length]),
+    Buffer([0,transfer.attachment.length + (lengthBug || 0)]),
     Buffer.from(transfer.attachment)
   ];
 

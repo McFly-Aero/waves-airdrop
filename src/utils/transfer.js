@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const Promise = require('bluebird');
 const rp = require('request-promise');
 let minfee = 100000;
-function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee, privateKey, server, attempts, dontsend}){
+function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee, privateKey, server, attempts, dontsend, lengthBug}){
   return new Promise((resolve, reject)=>{
     let ts = new Date().getTime();
     let _privateKey = bs58.decode(privateKey);
@@ -21,7 +21,7 @@ function transfer({amount, attachment, assetId, senderPublicKey, recipient, fee,
       "timestamp": ts,
     };
 
-    json['signature'] = signature(json, _privateKey, randomBytes);
+    json['signature'] = signature(json, _privateKey, randomBytes, lengthBug);
     json['attachment'] = encode(json['attachment'])
 
     let options = {

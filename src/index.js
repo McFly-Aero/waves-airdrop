@@ -48,12 +48,13 @@ function processList(list){
     let obj = {
       server: options.server,
       amount: options.amount,
-      attachment: options.message,
+      attachment: options.message || 'Test message',
       assetId: options.assetId,
       senderPublicKey: options.publicKey,
       recipient:line.address,
       attempts:line.attempts || 0,
       fee: options.fee,
+      lengthBug:options.lengthBug?(+options.lengthBug):null,
       privateKey:options.privateKey
     }
     log.log('processing:\t'+i+' / '+list.length);

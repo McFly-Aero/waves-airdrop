@@ -65,6 +65,13 @@ const optionDefinitions = [
     description: 'FAKE sending money if flag is set',
     defaultValue: false,
     type: Boolean
+  },
+  {
+    name: 'lengthBug',
+    alias: 'z',
+    description: 'The number to fix length bug issue. try 1,2, -1 or -2',
+    defaultValue: false,
+    type: Number
   }
 ];
 
@@ -95,7 +102,7 @@ function checkRequired(opts){
   !opts.publicKey ||
   !opts.privateKey ||
   !opts.lists || opts.lists.length<=0 ||
-  (opts.message && opt.message.length>140));
+  (opts.message && opts.message.length>140));
 }
 
 function init(){
