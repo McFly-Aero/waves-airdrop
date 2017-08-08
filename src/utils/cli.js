@@ -69,8 +69,22 @@ const optionDefinitions = [
   {
     name: 'lengthBug',
     alias: 'z',
-    description: 'The number to fix length bug issue. try 1,2, -1 or -2',
+    description: 'A number to fix length bug issue. try 1,2, -1 or -2',
     defaultValue: false,
+    type: Number
+  },
+  {
+    name: 'pause',
+    alias: 'p',
+    description: 'How many msec between sendings. Default: 1300',
+    defaultValue: 1300,
+    type: Number
+  },
+  {
+    name: 'concurrent',
+    alias: 'n',
+    description: 'A number of concurrent sendings. Default: 1',
+    defaultValue: 1,
     type: Number
   }
 ];

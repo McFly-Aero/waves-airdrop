@@ -55,7 +55,9 @@ function processList(list){
       attempts:line.attempts || 0,
       fee: options.fee,
       lengthBug:options.lengthBug?(+options.lengthBug):null,
-      privateKey:options.privateKey
+      privateKey:options.privateKey,
+      pause:options.pause,
+      concurrent: options.concurrent
     }
     log.log('processing:\t'+i+' / '+list.length);
     i++;
@@ -64,9 +66,9 @@ function processList(list){
         if(error){
           log.saveFailedTransaction(error)
         }
-        return null;
+        return Promise.delay(options.pause);
       })
-  }, {concurrency: 3})
+  }, {concurrency: options.concurrent})
 }
 
 function showEndMessage(){
