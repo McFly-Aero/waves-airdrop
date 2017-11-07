@@ -5,7 +5,7 @@
     https://nodejs.org/en/download/current/
 
     2) тянем гит в папку wms
-    git pull https://bitbucket.org/gen4/wavemasssender wms
+    git clone https://github.com/McFly-Aero/waves-airdrop wms
 
     3) заходим в папку
     cd wms
